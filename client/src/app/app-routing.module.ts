@@ -38,7 +38,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'blog',
-    component: BlogComponent
+    component: BlogComponent, //Blog Route
+    canActivate: [AuthGuard]  //User must be logged in to view this route
   },
   { path: '**', component: HomeComponent } // "Catch-All" Route
 ];
