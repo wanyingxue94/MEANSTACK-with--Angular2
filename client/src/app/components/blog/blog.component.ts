@@ -21,6 +21,8 @@ export class BlogComponent implements OnInit {
   blogPosts;
   newComment = [];
   enabledComments = [];
+  filesToUpload: Array<File>;
+  imagePath;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,6 +31,7 @@ export class BlogComponent implements OnInit {
   ) {
     this.createNewBlogForm(); // Create new blog form on start up
     this.createCommentForm(); // Create form for posting comments on a user's blog post
+    this.filesToUpload = [];
   }
 
   // Function to create new blog form
@@ -57,7 +60,9 @@ export class BlogComponent implements OnInit {
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(200)
-      ])]
+      ])],
+      imagePath: ['', Validators.compose([
+      ])],
     })
   }
 
@@ -132,7 +137,8 @@ export class BlogComponent implements OnInit {
     const blog = {
       title: this.form.get('title').value, // Title field
       body: this.form.get('body').value, // Body field
-      createdBy: this.username // CreatedBy field
+      createdBy: this.username,// CreatedBy field
+      imagePath: 'http://localhost:8080/' + this.imagePath
     }
 
     // Function to save blog into database
@@ -214,6 +220,40 @@ export class BlogComponent implements OnInit {
   collapse(id) {
     const index = this.enabledComments.indexOf(id); // Get position of id in array
     this.enabledComments.splice(index, 1); // Remove id from array
+  }
+
+  upload() {
+    this.makeFileRequest("http://localhost:8080/upload", [], this.filesToUpload).then((result) => {
+      console.log(result);
+      this.imagePath = result[0].path;
+    }, (error) => {
+      console.error(error);
+    });
+  }
+
+  fileChangeEvent(fileInput: any){
+    this.filesToUpload = <Array<File>> fileInput.target.files;
+  }
+
+  makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
+    return new Promise((resolve, reject) => {
+      var formData: any = new FormData();
+      var xhr = new XMLHttpRequest();
+      for(var i = 0; i < files.length; i++) {
+        formData.append("uploads[]", files[i], files[i].name);
+      }
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(xhr.response);
+          }
+        }
+      }
+      xhr.open("POST", url, true);
+      xhr.send(formData);
+    });
   }
 
   ngOnInit() {

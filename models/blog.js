@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 
+
 // Validate Function to check blog title length
 
 let titleLengthChecker = (title) => {
@@ -107,6 +108,7 @@ const blogSchema = new Schema({
     likedBy: { type: Array },
     dislikes: { type: Number, default: 0 },
     dislikedBy: { type: Array },
+    imagePath: { type: String },
     comments: [{
         comment: { type: String, validate: commentValidators },
         commentator: { type: String }

@@ -12,6 +12,7 @@ const authentication = require('./routes/authentication')(router);
 const blogs = require('./routes/blogs')(router); // Import Blog Routes
 const bodyParser = require('body-parser');
 const cors = require('cors');
+var multer = require("multer");
 
 //Database Connection
 mongoose.Promise = global.Promise;
@@ -25,6 +26,15 @@ mongoose.connect(config.uri, (err) => {
 
 });
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+var upload = multer({ storage: storage });
 
 //Middleware
 app.use(cors({
@@ -40,8 +50,39 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/authentication', authentication);
 app.use('/blogs', blogs); // Use Blog routes in application
+app.use(express.static('uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
+app.get('/upload/:fileName',function(req,res) {
 
+    var options = {
+        port: 80,
+        method : 'GET',
+        hostname : "localhost",
+        path : "/upload/" + req.params.fileName
+    };
+
+    var req = http.request(options,function(response) {
+        response.pipe(res);
+    });
+
+    req.on('error',function(err) {
+        res.statusCode = 404;
+        res.end("Error : file not found");
+    });
+
+    req.end();
+});
+
+app.post("/upload", upload.array("uploads[]", 12), function (req, res) {
+    console.log('files', req.files);
+    res.send(req.files);
+});
 
 app.get('*', (req, res) => {
     res.sendfile(path.join(__dirname + '/client/dist/index.html'));

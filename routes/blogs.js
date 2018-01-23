@@ -7,6 +7,7 @@ const Blog = require('../models/blog'); // Import Blog Model Schema
 const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
 const config = require('../config/database'); // Import database configuration
 
+
 module.exports = (router) => {
 
     /* ===============================================================
@@ -29,7 +30,9 @@ module.exports = (router) => {
                     const blog = new Blog({
                         title: req.body.title, // Title field
                         body: req.body.body, // Body field
-                        createdBy: req.body.createdBy // CreatedBy field
+                        image: req.body.image,
+                        createdBy: req.body.createdBy, // CreatedBy field
+                        imagePath: req.body.imagePath
                     });
                     // Save blog into database
                     blog.save((err) => {
@@ -437,8 +440,6 @@ module.exports = (router) => {
             }
         }
     });
-
-
 
 
 
