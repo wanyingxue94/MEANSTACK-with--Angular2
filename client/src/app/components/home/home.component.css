@@ -1,0 +1,19 @@
+.jumbotron {
+  font-style: italic;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: firebrick;
+  background-color: #eee;
+}
+
+.jumbotron[_ngcontent-c2] {
+  font-style: italic;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: firebrick;
+  background-color: #FEE;
+}
+
+

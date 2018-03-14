@@ -68,6 +68,12 @@ export class BlogService {
     return this.http.put(this.domain + 'blogs/dislikeBlog/', blogData, this.options).map(res => res.json());
   }
 
+  viewSingleBlog(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.get(this.domain + 'blogs/viewBlog/' + id, this.options).map(res => res.json());
+  }
+
+
   // Function to post a comment on a blog post
   postComment(id, comment) {
     this.createAuthenticationHeaders(); // Create headers

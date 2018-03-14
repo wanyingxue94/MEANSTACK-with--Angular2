@@ -1,5 +1,48 @@
 <h2 class="page-header">Profile Page</h2>
-<ul class="list-group">
-  <li class="list-group-item">Username: {{ username }}</li>
-  <li class="list-group-item">Email: {{ email }}</li>
-</ul>
+<div class="col-sm-3">
+  <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
+  <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
+  <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
+  <p><i class="glyphicon glyphicon-envelope"></i> {{ email }} </p>
+  <div>
+    <ul class="list-group">
+      <li><a [routerLink]="['/edit-profile']">
+        <button type="button" name="button" class="btn btn-sm btn-info">Edit Profile</button>
+      </a></li>
+      <br>
+      <li><a [routerLink]="['/edit-profile']">
+        <button type="button" name="button" class="btn btn-sm btn-primary">Change Password</button>
+      </a></li>
+      <br>
+      <li><a [routerLink]="['/edit-avatar']">
+        <button type="button" name="button" class="btn btn-sm btn-success">Change Avatar</button>
+      </a></li>
+    </ul>
+  </div>
+</div>
+<div class="col-sm-9">
+  <div><h3>About me</h3>
+    <p style="word-wrap: break-word;"> {{ aboutme }} </p></div>
+  <div><h3>Followers</h3>
+    <ul class="nav nav-stacked" id="accordion1">
+      <li class="panel"><a data-toggle="collapse" data-parent="#accordion1" href="#firstLink">{{+followerUsers.length}}
+        Followers</a>
+        <ul id="firstLink" class="collapse">
+          <li *ngFor="let followerUser of followerUsers"><a [routerLink]="['/user/', followerUser.username]">{{followerUser.username}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div><h3>Following</h3>
+    <ul class="nav nav-stacked" id="accordion2">
+      <li class="panel"><a data-toggle="collapse" data-parent="#accordion2" href="#secondLink">{{+followingUsers.length}}
+        Following</a>
+        <ul id="secondLink" class="collapse">
+          <li *ngFor="let followingUser of followingUsers"><a [routerLink]="['/user/', followingUser.username]">{{followingUser.username}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

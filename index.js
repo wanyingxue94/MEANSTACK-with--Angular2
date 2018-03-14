@@ -10,6 +10,8 @@ const config = require('./config/database');
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
 const blogs = require('./routes/blogs')(router); // Import Blog Routes
+const home = require('./routes/home')(router);
+const search = require('./routes/search')(router);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var multer = require("multer");
@@ -50,8 +52,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/authentication', authentication);
 app.use('/blogs', blogs); // Use Blog routes in application
+app.use('/home', home);
+app.use('/search', search);
 app.use(express.static('uploads'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/image', express.static(__dirname + '/image'));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -65,6 +70,27 @@ app.get('/upload/:fileName',function(req,res) {
         method : 'GET',
         hostname : "localhost",
         path : "/upload/" + req.params.fileName
+    };
+
+    var req = http.request(options,function(response) {
+        response.pipe(res);
+    });
+
+    req.on('error',function(err) {
+        res.statusCode = 404;
+        res.end("Error : file not found");
+    });
+
+    req.end();
+});
+
+app.get('/image/:fileName',function(req,res) {
+
+    var options = {
+        port: 80,
+        method : 'GET',
+        hostname : "localhost",
+        path : "/image/" + req.params.fileName
     };
 
     var req = http.request(options,function(response) {

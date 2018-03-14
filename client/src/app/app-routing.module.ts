@@ -11,7 +11,13 @@ import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.compone
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
-
+import { SearchComponent } from "./components/search/search.component";
+import { TagsComponent } from "./components/tags/tags.component";
+import { ViewBlogComponent } from "./components/blog/view-blog/view-blog.component";
+import {BlankComponent} from "./components/blank/blank.component";
+import {EditProfileComponent} from "./components/profile/edit-profile/edit-profile.component";
+import {EditAvatarComponent} from "./components/profile/edit-avatar/edit-avatar.component";
+import {EditPasswordComponent} from "./components/profile/edit-password/edit-password.component";
 
 // Our Array of Angular 2 Routes
 const appRoutes: Routes = [
@@ -57,6 +63,40 @@ const appRoutes: Routes = [
   {
     path: 'user/:username',
     component: PublicProfileComponent, // Public Profile Route
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'search/text/:text',
+    component: SearchComponent, // Edit Blog ROute
+    canActivate: [AuthGuard] // User must be logge din to view this route
+  },
+  {
+    path: 'search/tags/:tag',
+    component: TagsComponent, // Edit Blog ROute
+    canActivate: [AuthGuard] // User must be logge din to view this route
+  },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent, // Profile Route
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-avatar',
+    component: EditAvatarComponent, // Profile Route
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-password',
+    component: EditPasswordComponent, // Profile Route
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'blank',
+    component: BlankComponent // Blank Route
+  },
+  {
+    path: 'view-blog/:id',
+    component: ViewBlogComponent, // Delete Blog Route
     canActivate: [AuthGuard] // User must be logged in to view this route
   },
   { path: '**', component: HomeComponent } // "Catch-All" Route

@@ -20,6 +20,17 @@ import { BlogComponent } from './components/blog/blog.component';
 import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component';
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
+import {HomeService} from "./services/home.service";
+import { SearchComponent } from './components/search/search.component';
+import {SearchService} from "./services/search.service";
+import { ViewBlogComponent } from './components/blog/view-blog/view-blog.component';
+import { TagsComponent } from './components/tags/tags.component';
+import {DashboardService} from "./services/dashboard.service";
+import { BlankComponent } from './components/blank/blank.component';
+import { EditAvatarComponent } from './components/profile/edit-avatar/edit-avatar.component';
+import { EditPasswordComponent } from './components/profile/edit-password/edit-password.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import {UsersService} from "./services/users.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +44,14 @@ import { PublicProfileComponent } from './components/public-profile/public-profi
     BlogComponent,
     EditBlogComponent,
     DeleteBlogComponent,
-    PublicProfileComponent
+    PublicProfileComponent,
+    SearchComponent,
+    ViewBlogComponent,
+    TagsComponent,
+    BlankComponent,
+    EditAvatarComponent,
+    EditPasswordComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +61,7 @@ import { PublicProfileComponent } from './components/public-profile/public-profi
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, BlogService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, BlogService,HomeService,SearchService,DashboardService,UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

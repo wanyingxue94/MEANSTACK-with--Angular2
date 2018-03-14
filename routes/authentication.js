@@ -183,7 +183,7 @@ module.exports = (router) => {
      =============================================================== */
     router.get('/profile', (req, res) => {
         // Search for user in database
-        User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email follows followers aboutme avatar').exec((err, user) => {
             // Check if error connecting
             if (err) {
                 res.json({ success: false, message: err }); // Return error
@@ -207,7 +207,7 @@ module.exports = (router) => {
             res.json({ success: false, message: 'No username was provided' }); // Return error message
         } else {
             // Check the database for username
-            User.findOne({ username: req.params.username }).select('username email').exec((err, user) => {
+            User.findOne({ username: req.params.username }).select('username email follows followers aboutme avatar').exec((err, user) => {
                 // Check if error was found
                 if (err) {
                     res.json({ success: false, message: 'Something went wrong.' }); // Return error message
@@ -221,6 +221,137 @@ module.exports = (router) => {
                 }
             });
         }
+    });
+
+    /* ========
+     FOLLOW ROUTE
+     ======== */
+    router.post('/follow', (req, res) => {
+        queryOne = {'username': req.body.second},
+            updateOne = {$push: {followers: req.body.first}},
+            queryTwo = {'username': req.body.first},
+            updateTwo = {$push: {follows: req.body.second}},
+            options = {upsert: true};
+
+        User.findOneAndUpdate(queryOne, updateOne, options, function (err, data) {
+            if (err) {
+                res.json({success: false, message: err}); // Return error message
+            } else {
+                if (!data) {
+                    res.json({success: false, message: 'Username not found.'}); // Return error message
+                } else {
+                    User.findOneAndUpdate(queryTwo, updateTwo, options, function (err, data) {
+                        if (err) {
+                            res.json({success: false, message: err}); // Return error message
+                        } else {
+                            if (!data) {
+                                res.json({success: false, message: 'Username not found.'}); // Return error message
+                            } else {
+                                res.json({success: true, message: 'Done'});
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    /* ========
+     UNFOLLOW ROUTE
+     ======== */
+    router.post('/unfollow', (req, res) => {
+        queryOne = {'username': req.body.second},
+            updateOne = {$pull: {followers: req.body.first}},
+            queryTwo = {'username': req.body.first},
+            updateTwo = {$pull: {follows: req.body.second}},
+            options = {upsert: true};
+
+        User.findOneAndUpdate(queryOne, updateOne, options, function (err, data) {
+            if (err) {
+                res.json({success: false, message: err}); // Return error message
+            } else {
+                if (!data) {
+                    res.json({success: false, message: 'Username not found.'}); // Return error message
+                } else {
+                    User.findOneAndUpdate(queryTwo, updateTwo, options, function (err, data) {
+                        if (err) {
+                            res.json({success: false, message: err}); // Return error message
+                        } else {
+                            if (!data) {
+                                res.json({success: false, message: 'Username not found.'}); // Return error message
+                            } else {
+                                res.json({success: true, message: 'Done'});
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    /* ========
+     LOAD FOLLOWINGS ROUTE
+     ======== */
+    router.post('/loadfollowings', (req, res) => {
+        if (!req.body.username) {
+            res.json({ success: false, message: 'Nothing to search.' }); // Return error message
+        } else {
+            User.find( { followers : req.body.username } , function (err,users) {
+                if(err){
+                    res.json({ success: false, message: err });
+                }else{
+                    res.json({ success: true, users: users });
+                }
+            }).sort({ '_id': -1 });
+        }
+    });
+
+    /* ========
+     LOAD FOLLOWERS ROUTE
+     ======== */
+    router.post('/loadfollowers', (req, res) => {
+        if (!req.body.username) {
+            res.json({ success: false, message: 'Nothing to search.' }); // Return error message
+        } else {
+            User.find( { follows : req.body.username } , function (err,users) {
+                if(err){
+                    res.json({ success: false, message: err });
+                }else{
+                    res.json({ success: true, users: users });
+                }
+            }).sort({ '_id': -1 });
+        }
+    });
+
+    /* ========
+        UPDATE USER PROFILE
+        ======== */
+    router.put('/updateProfile', (req, res) => {
+        searchQuery = {'username': req.body.username},
+            updateQuery = {'email':req.body.email,'aboutme':req.body.aboutme},
+            options = {upsert: true};
+
+        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+            if (err) {
+                res.json({success: false, message: err}); // Return error message
+            }else{
+                res.json({ success: true, message: 'Profile Updated!' });
+            }
+        });
+    });
+
+    /* ========
+     UPDATE USER PROFILE AVATAR
+     ======== */
+    router.put('/updateProfileAvatar', (req, res) => {
+        searchQuery = {'username': req.body.username}, updateQuery = {'avatar':req.body.avatar}, options = {upsert: true};
+        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+            if (err) {
+                res.json({success: false, message: err}); // Return error message
+            }else{
+                res.json({ success: true, message: 'Profile Updated!' });
+            }
+        });
     });
 
     return router; // Return router object to main index.js

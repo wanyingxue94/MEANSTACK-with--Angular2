@@ -32,7 +32,8 @@ module.exports = (router) => {
                         body: req.body.body, // Body field
                         image: req.body.image,
                         createdBy: req.body.createdBy, // CreatedBy field
-                        imagePath: req.body.imagePath
+                        imagePath: req.body.imagePath,
+                        tags : req.body.tags
                     });
                     // Save blog into database
                     blog.save((err) => {
@@ -125,6 +126,32 @@ module.exports = (router) => {
             });
         }
     });
+
+    /* ===============================================================
+     VIEW SINGLE BLOG
+     =============================================================== */
+    router.get('/viewBlog/:id', (req, res) => {
+        // Check if id is present in parameters
+        if (!req.params.id) {
+            res.json({ success: false, message: 'No blog ID was provided.' }); // Return error message
+        } else {
+            // Check if the blog id is found in database
+            Blog.findOne({ _id: req.params.id }, (err, blog) => {
+                // Check if the id is a valid ID
+                if (err) {
+                    res.json({ success: false, message: 'Not a valid blog id' }); // Return error message
+                } else {
+                    // Check if blog was found by id
+                    if (!blog) {
+                        res.json({ success: false, message: 'Blog not found.' }); // Return error message
+                    } else {
+                        res.json({ success: true, blog: blog });
+                    }
+                }
+            });
+        }
+    });
+
 
     /* ===============================================================
      UPDATE BLOG POST

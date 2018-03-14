@@ -23,6 +23,7 @@ export class BlogComponent implements OnInit {
   enabledComments = [];
   filesToUpload: Array<File>;
   imagePath;
+  tagArray = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +50,11 @@ export class BlogComponent implements OnInit {
         Validators.required,
         Validators.maxLength(500),
         Validators.minLength(5)
-      ])]
+      ])],
+      imagePath: ['', Validators.compose([
+      ])],
+      tag: ['', Validators.compose([
+      ])],
     })
   }
 
@@ -60,8 +65,6 @@ export class BlogComponent implements OnInit {
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(200)
-      ])],
-      imagePath: ['', Validators.compose([
       ])],
     })
   }
@@ -80,12 +83,16 @@ export class BlogComponent implements OnInit {
   enableFormNewBlogForm() {
     this.form.get('title').enable(); // Enable title field
     this.form.get('body').enable(); // Enable body field
+    this.form.get('imagePath').enable();
+    this.form.get('tag').enable();
   }
 
   // Disable new blog form
   disableFormNewBlogForm() {
     this.form.get('title').disable(); // Disable title field
     this.form.get('body').disable(); // Disable body field
+    this.form.get('imagePath').disable();
+    this.form.get('tag').disable();
   }
 
   // Validation for title
@@ -134,11 +141,16 @@ export class BlogComponent implements OnInit {
     this.processing = true; // Disable submit button
     this.disableFormNewBlogForm(); // Lock form
     // Create blog object from form fields
+    var tagString = this.form.get('tag').value;
+    if(tagString){
+      this.tagArray = tagString.split(',');
+    }
     const blog = {
       title: this.form.get('title').value, // Title field
       body: this.form.get('body').value, // Body field
       createdBy: this.username,// CreatedBy field
-      imagePath: 'http://localhost:8080/' + this.imagePath
+      imagePath: 'http://localhost:8080/' + this.imagePath,
+      tags: this.tagArray
     }
 
     // Function to save blog into database
@@ -174,7 +186,15 @@ export class BlogComponent implements OnInit {
   getAllBlogs() {
     // Function to GET all blogs from database
     this.blogService.getAllBlogs().subscribe(data => {
-      this.blogPosts = data.blogs; // Assign array to use in HTML
+      var results = [];
+      for(var i = 0, len = data.blogs.length ; i<len ; i++)
+      {
+        var item = data.blogs[i];
+        if(item.createdBy == this.username){
+          results.push(item);
+        }
+      }
+      this.blogPosts = results; // Assign array to use in HTML
     });
   }
 

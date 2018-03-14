@@ -108,6 +108,7 @@ const blogSchema = new Schema({
     likedBy: { type: Array },
     dislikes: { type: Number, default: 0 },
     dislikedBy: { type: Array },
+    tags: [String],
     imagePath: { type: String },
     comments: [{
         comment: { type: String, validate: commentValidators },

@@ -1,0 +1,9 @@
+img { width: 100px; margin-bottom: 10px; }
+
+ul, ol {
+    list-style: none;
+}
+
+#accordion1 li.panel{
+    margin-bottom: 0px;
+}
