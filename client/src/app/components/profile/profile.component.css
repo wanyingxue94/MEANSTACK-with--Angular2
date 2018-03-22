@@ -7,3 +7,56 @@ ul, ol {
 #accordion1 li.panel{
     margin-bottom: 0px;
 }
+
+.jumbotron {
+  font-style: normal;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  /*margin:0 auto;*/
+  color: black;
+  background-color: #eee;
+  /*width: 70%;*/
+
+}
+
+.page-header{
+  text-align: center;
+}
+
+.card{
+  margin:0 auto;
+}
+
+.display{
+  display: flex;
+  margin:0 auto;
+}
+
+#accordion2 {
+  display:block;
+  margin:0px 10px 10px auto;
+}
+
+#accordion1 {
+  display:block;
+  margin:0px auto 10px 10px;
+}
+.list-container {
+  border-top: 1px solid #c1c1c1;
+  padding: 5px 0px;
+}
+.list-profile-image-container {
+  display:inline-block;
+}
+
+.list-profile-image-container img{
+  width:45px;
+}
+
+.list-profile-name {
+  display:inline-block;
+  width:80%;
+  padding-left:10px;
+}
+

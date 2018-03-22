@@ -141,7 +141,9 @@ const userSchema = new Schema({
     follows: [String],
     followers: [String],
     aboutme: { type: String },
-    avatar: { type:String }
+    avatar: { type:String },
+    score: { type: Number, default: 0 }
+
 });
 
 

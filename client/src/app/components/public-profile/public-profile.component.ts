@@ -26,6 +26,7 @@ export class PublicProfileComponent implements OnInit {
   followerUsers;
   aboutme = '';
   imagePath='';
+  score;
 
   constructor(
     private authService: AuthService,
@@ -134,6 +135,7 @@ export class PublicProfileComponent implements OnInit {
         this.followings = data.user.followings;
         this.aboutme = data.user.aboutme;
         this.imagePath = data.user.avatar;
+        this.score = data.user.score;
         this.loadFollowingsAndFollowers();
       }
     });

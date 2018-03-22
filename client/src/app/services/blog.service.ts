@@ -73,6 +73,11 @@ export class BlogService {
     return this.http.get(this.domain + 'blogs/viewBlog/' + id, this.options).map(res => res.json());
   }
 
+  getAllFollowedBlogs(username) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.get(this.domain + 'blogs/allFollowedBlogs/'+username, this.options).map(res => res.json());
+  }
+
 
   // Function to post a comment on a blog post
   postComment(id, comment) {

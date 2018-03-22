@@ -44,3 +44,19 @@
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+.thumbnail .caption {
+  min-height: 450px;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+  height: 180px;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+  width: auto;
+  height:220px;
+  display:block;
+  margin:0px auto;
+}
+
+

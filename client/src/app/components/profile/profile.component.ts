@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   followings = [];
   followingUsers;
   followerUsers;
+  score;
 
   constructor(
     private authService: AuthService,
@@ -55,6 +56,7 @@ export class ProfileComponent implements OnInit {
       this.email = profile.user.email; // Set e-mail
       this.aboutme = profile.user.aboutme;
       this.imagePath = profile.user.avatar;
+      this.score = profile.user.score;
       this.loadFollowingsAndFollowers();
     });
   }

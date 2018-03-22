@@ -44,3 +44,10 @@
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+  width: auto;
+  height:320px;
+  display:block;
+  margin:0px auto;
+}

@@ -23,7 +23,10 @@ export class BlogComponent implements OnInit {
   enabledComments = [];
   filesToUpload: Array<File>;
   imagePath;
+  imagePaths = [];
   tagArray = [];
+  productLinksArray = [];
+  followedBlogs;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +58,8 @@ export class BlogComponent implements OnInit {
       ])],
       tag: ['', Validators.compose([
       ])],
+      productLinks: ['', Validators.compose([
+      ])],
     })
   }
 
@@ -85,6 +90,7 @@ export class BlogComponent implements OnInit {
     this.form.get('body').enable(); // Enable body field
     this.form.get('imagePath').enable();
     this.form.get('tag').enable();
+    this.form.get('productLinks').enable();
   }
 
   // Disable new blog form
@@ -93,6 +99,7 @@ export class BlogComponent implements OnInit {
     this.form.get('body').disable(); // Disable body field
     this.form.get('imagePath').disable();
     this.form.get('tag').disable();
+    this.form.get('productLinks').disable();
   }
 
   // Validation for title
@@ -145,12 +152,21 @@ export class BlogComponent implements OnInit {
     if(tagString){
       this.tagArray = tagString.split(',');
     }
+
+    var productLinksString = this.form.get('productLinks').value;
+    if(productLinksString){
+      this.productLinksArray = productLinksString.split(',');
+    }
+
     const blog = {
       title: this.form.get('title').value, // Title field
       body: this.form.get('body').value, // Body field
       createdBy: this.username,// CreatedBy field
       imagePath: 'http://localhost:8080/' + this.imagePath,
-      tags: this.tagArray
+      tags: this.tagArray,
+      imagePaths:this.imagePaths,
+      productLinks: this.productLinksArray
+
     }
 
     // Function to save blog into database
@@ -195,6 +211,14 @@ export class BlogComponent implements OnInit {
         }
       }
       this.blogPosts = results; // Assign array to use in HTML
+    });
+  }
+
+  // Function to get all blogs from the database
+  getAllFollowedBlogs(username) {
+    // Function to GET all blogs from database
+    this.blogService.getAllFollowedBlogs(username).subscribe(data => {
+      this.followedBlogs = data.blogs; // Assign array to use in HTML
     });
   }
 
@@ -243,9 +267,14 @@ export class BlogComponent implements OnInit {
   }
 
   upload() {
-    this.makeFileRequest("http://localhost:8080/upload", [], this.filesToUpload).then((result) => {
-      console.log(result);
-      this.imagePath = result[0].path;
+    this.makeFileRequest("http://localhost:8080/upload", [], this.filesToUpload).then((result:Array<any>) => {
+      this.imagePaths = [];
+      if(result != null){
+        var len = result.length;
+        for (var i = 0; i < len; i++) {
+          this.imagePaths.push('http://localhost:8080/'+ result[i].path);
+        }
+      }
     }, (error) => {
       console.error(error);
     });

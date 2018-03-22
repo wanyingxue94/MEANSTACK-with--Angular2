@@ -31,6 +31,7 @@ import { EditAvatarComponent } from './components/profile/edit-avatar/edit-avata
 import { EditPasswordComponent } from './components/profile/edit-password/edit-password.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import {UsersService} from "./services/users.service";
+import { RedirectComponent } from './components/redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {UsersService} from "./services/users.service";
     BlankComponent,
     EditAvatarComponent,
     EditPasswordComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,

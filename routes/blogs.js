@@ -32,8 +32,10 @@ module.exports = (router) => {
                         body: req.body.body, // Body field
                         image: req.body.image,
                         createdBy: req.body.createdBy, // CreatedBy field
-                        imagePath: req.body.imagePath,
-                        tags : req.body.tags
+                        imagePaths: req.body.imagePaths,
+                        tags : req.body.tags,
+                        productLinks: req.body.productLinks
+
                     });
                     // Save blog into database
                     blog.save((err) => {
@@ -56,6 +58,9 @@ module.exports = (router) => {
                                 res.json({ success: false, message: err }); // Return general error message
                             }
                         } else {
+                            searchQuery = {'username': req.body.createdBy}, updateQuery = {$inc : {'score' : 1}}, options = {upsert: true};
+                            User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+                            });
                             res.json({ success: true, message: 'Blog saved!' }); // Return success message
                         }
                     });
@@ -308,6 +313,9 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : 4}}, options = {upsert: true};
+                                                        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+                                                        });
                                                         res.json({ success: true, message: 'Blog liked!' }); // Return success message
                                                     }
                                                 });
@@ -319,6 +327,9 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : 2}}, options = {upsert: true};
+                                                        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+                                                        });
                                                         res.json({ success: true, message: 'Blog liked!' }); // Return success message
                                                     }
                                                 });
@@ -384,6 +395,9 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : -4}}, options = {upsert: true};
+                                                        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+                                                        });
                                                         res.json({ success: true, message: 'Blog disliked!' }); // Return success message
                                                     }
                                                 });
@@ -396,6 +410,9 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : -2}}, options = {upsert: true};
+                                                        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+                                                        });
                                                         res.json({ success: true, message: 'Blog disliked!' }); // Return success message
                                                     }
                                                 });
@@ -468,7 +485,28 @@ module.exports = (router) => {
         }
     });
 
-
+    /* ===============================================================
+     GET ALL BLOGS FOR USER's FOLLOWING
+     =============================================================== */
+    router.get('/allFollowedBlogs/:username', (req, res) => {
+        User.findOne({ 'username': req.params.username }, (err, user) => {
+            if(err){
+                res.json({ success: false, message: 'Invalid user name' });
+            }else{
+                if(!user){
+                    res.json({ success: false, message: 'User not found.' });
+                }else{
+                    Blog.find({createdBy: {$in:user.follows}}, (err, blogs) => {
+                        if(err){
+                            res.json({ success: false, message: 'Something went wrong' });
+                        }else{
+                            res.json({ success: true, blogs: blogs });
+                        }
+                    });
+                }
+            }
+        });
+    });
 
 
     return router;

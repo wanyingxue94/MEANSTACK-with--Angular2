@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import {DashboardService} from '../../services/dashboard.service';
+import {BlogService} from "../../services/blog.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -23,11 +24,14 @@ export class DashboardComponent implements OnInit {
   enabledComments = [];
   filesToUpload: Array<File>;
   imagePath;
+  imagePaths;
+  followedBlogs;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private blogService: BlogService
   ) {
     this.createNewBlogForm(); // Create new blog form on start up
     this.createCommentForm(); // Create form for posting comments on a user's blog post
@@ -80,6 +84,13 @@ export class DashboardComponent implements OnInit {
   enableFormNewBlogForm() {
     this.form.get('title').enable(); // Enable title field
     this.form.get('body').enable(); // Enable body field
+  }
+
+  getAllFollowedBlogs(username) {
+    // Function to GET all blogs from database
+    this.blogService.getAllFollowedBlogs(username).subscribe(data => {
+      this.followedBlogs = data.blogs; // Assign array to use in HTML
+    });
   }
 
   // Disable new blog form
@@ -260,6 +271,7 @@ export class DashboardComponent implements OnInit {
     // Get profile username on page load
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username; // Used when creating new blog posts and comments
+      this.getAllFollowedBlogs(this.username);
     });
 
     this.getAllBlogs(); // Get all blogs on component load

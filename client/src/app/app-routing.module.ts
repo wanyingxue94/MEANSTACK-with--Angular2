@@ -18,6 +18,8 @@ import {BlankComponent} from "./components/blank/blank.component";
 import {EditProfileComponent} from "./components/profile/edit-profile/edit-profile.component";
 import {EditAvatarComponent} from "./components/profile/edit-avatar/edit-avatar.component";
 import {EditPasswordComponent} from "./components/profile/edit-password/edit-password.component";
+import {RedirectComponent} from "./components/redirect/redirect.component";
+
 
 // Our Array of Angular 2 Routes
 const appRoutes: Routes = [
@@ -98,6 +100,11 @@ const appRoutes: Routes = [
     path: 'view-blog/:id',
     component: ViewBlogComponent, // Delete Blog Route
     canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'redirect',
+    component: RedirectComponent, //Redirect Route
+    canActivate: [AuthGuard]  //User must be logged in to view this route
   },
   { path: '**', component: HomeComponent } // "Catch-All" Route
 ];

@@ -47,46 +47,33 @@
 
 
 /*.square {*/
-/*position: relative;*/
-/*width: 50%;*/
-/*padding-bottom : 10%; !* = width for a 1:1 aspect ratio *!*/
-/*margin:1.66%;*/
-/*overflow:hidden;*/
+  /*position: relative;*/
+  /*flex-basis: calc(33.333% - 10px);*/
+  /*margin: 5px;*/
+  /*border: 1px solid;*/
+  /*box-sizing: border-box;*/
+
 /*}*/
 
-/*.table{*/
-/*display:table;*/
-/*height:100%;*/
-/*width:100%;*/
+/*#grid {*/
+  /*display: grid;*/
+  /*height: 200px;*/
+  /*grid-template: repeat(3, 1fr) / repeat(3, 1fr);*/
+  /*grid-gap: 20px 5px;*/
+
 /*}*/
 
-/*.table-cell{*/
-/*display:table-cell;*/
-/*vertical-align:middle;*/
-/*height:100%;*/
-/*width:100%;*/
-/*}*/
-
-/*.square-container {*/
-/*display: flex;*/
-/*flex-wrap: wrap;*/
-/*}*/
-
-.square {
-  position: relative;
-  flex-basis: calc(33.333% - 10px);
-  margin: 5px;
-  border: 1px solid;
-  box-sizing: border-box;
-
+.thumbnail .caption {
+  min-height: 450px;
 }
 
-#grid {
-  display: grid;
-  height: 200px;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  grid-gap: 20px 5px;
-
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+  height: 180px;
 }
-
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+  width: auto;
+  height:220px;
+  display:block;
+  margin:0px auto;
+}
 

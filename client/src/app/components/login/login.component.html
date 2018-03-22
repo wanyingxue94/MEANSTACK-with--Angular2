@@ -1,4 +1,4 @@
-<h2 class="page-header">Login</h2>
+<!--<h2 class="page-header">Login</h2>-->
 
 <!-- Custom Success/Error Message -->
 <div class="row show-hide-message">
@@ -7,10 +7,15 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+    <p id="profile-name" class="profile-name-card"></p>
 <!-- Login Form -->
 <form [formGroup]="form" (submit)="onLoginSubmit()">
 
   <!-- Username Field -->
+
   <div class="form-group">
     <label for="username">Username</label>
     <div [ngClass]="{'has-error': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
@@ -37,3 +42,5 @@
   <input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />
   <!--<a href = ""><input class="btn btn-primary" type="submit" value="Forgot Password" /></a>-->
 </form>
+</div>
+</div>

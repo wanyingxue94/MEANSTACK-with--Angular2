@@ -56,4 +56,14 @@ export class UsersService {
     return this.http.post(this.domain + 'authentication/loadfollowers', user, this.options).map(res => res.json());
   }
 
+  addPoint(point){
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.put(this.domain + 'authentication/addPoint', point, this.options).map(res => res.json());
+  }
+
+  removePoint(point){
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.post(this.domain + 'authentication/removePoint', point, this.options).map(res => res.json());
+  }
+
 }

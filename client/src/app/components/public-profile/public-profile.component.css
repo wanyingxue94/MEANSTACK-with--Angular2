@@ -1,3 +1,45 @@
 img {
   width: 100px; margin-bottom: 10px;
 }
+
+.jumbotron {
+  font-style: normal;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  margin:0 auto;
+  color: black;
+  background-color: #eee;
+  /*width: 70%;*/
+
+}
+
+.display{
+  display: flex;
+  margin:0 auto;
+}
+
+.page-header{
+  text-align: center;
+}
+
+.j2{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  margin:0 auto;
+  color: black;
+  background-color: #eee;
+}
+
+#accordion2 {
+  display:block;
+  margin:0px 10px 10px auto;
+}
+
+#accordion1 {
+  display:block;
+  margin:0px auto 10px 10px;
+}
+
+

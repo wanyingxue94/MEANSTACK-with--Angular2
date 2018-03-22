@@ -183,7 +183,7 @@ module.exports = (router) => {
      =============================================================== */
     router.get('/profile', (req, res) => {
         // Search for user in database
-        User.findOne({ _id: req.decoded.userId }).select('username email follows followers aboutme avatar').exec((err, user) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email follows followers aboutme avatar score').exec((err, user) => {
             // Check if error connecting
             if (err) {
                 res.json({ success: false, message: err }); // Return error
@@ -207,7 +207,7 @@ module.exports = (router) => {
             res.json({ success: false, message: 'No username was provided' }); // Return error message
         } else {
             // Check the database for username
-            User.findOne({ username: req.params.username }).select('username email follows followers aboutme avatar').exec((err, user) => {
+            User.findOne({ username: req.params.username }).select('username email follows followers aboutme avatar score').exec((err, user) => {
                 // Check if error was found
                 if (err) {
                     res.json({ success: false, message: 'Something went wrong.' }); // Return error message
@@ -353,6 +353,36 @@ module.exports = (router) => {
             }
         });
     });
+
+    /* ========
+     UPDATE USER PROFILE AVATAR
+     ======== */
+    router.put('/updateProfileAvatar', (req, res) => {
+        searchQuery = {'username': req.body.username}, updateQuery = {'avatar':req.body.avatar}, options = {upsert: true};
+        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+            if (err) {
+                res.json({success: false, message: err}); // Return error message
+            }else{
+                res.json({ success: true, message: 'Profile Updated!' });
+            }
+        });
+    });
+
+
+    /* ========
+     ADD USER SCORE
+     ======== */
+    router.put('/addPoint', (req, res) => {
+        searchQuery = {'username': req.body.user}, updateQuery = {$inc : {'score' : req.body.point}}, options = {upsert: true};
+        User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
+            if (err) {
+                res.json({success: false, message: err}); // Return error message
+            }else{
+                res.json({ success: true, message: 'Profile Updated!' });
+            }
+        });
+    });
+
 
     return router; // Return router object to main index.js
 }
