@@ -15,6 +15,7 @@ const search = require('./routes/search')(router);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var multer = require("multer");
+const event = require('./routes/event')(router);
 
 //Database Connection
 mongoose.Promise = global.Promise;
@@ -57,11 +58,13 @@ app.use('/search', search);
 app.use(express.static('uploads'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/image', express.static(__dirname + '/image'));
+app.use('/event', event);
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
 
 app.get('/upload/:fileName',function(req,res) {
 

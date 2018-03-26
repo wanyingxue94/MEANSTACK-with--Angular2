@@ -32,6 +32,10 @@ import { EditPasswordComponent } from './components/profile/edit-password/edit-p
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import {UsersService} from "./services/users.service";
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { CreateEventComponent } from './components/event/create-event/create-event.component';
+import { ViewEventComponent } from './components/event/view-event/view-event.component';
+import { EventService } from './services/event.service';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +57,9 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     EditAvatarComponent,
     EditPasswordComponent,
     EditProfileComponent,
-    RedirectComponent
+    RedirectComponent,
+    CreateEventComponent,
+    ViewEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,7 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, BlogService,HomeService,SearchService,DashboardService,UsersService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, BlogService,HomeService,SearchService,DashboardService,UsersService,EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

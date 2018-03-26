@@ -1,52 +1,299 @@
 <h2 class="page-header">Profile Page</h2>
 <!--<div class="col-sm-3">-->
-<div class="jumbotron text-center">
-  <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
-  <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
-  <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
-  <p><i class="glyphicon glyphicon-envelope"></i> {{ email }} </p>
-  <p><i class="glyphicon glyphicon-usd"></i>Reward Score: {{ score }}</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="jumbotron text-center">
+      <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
+      <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
+      <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
+      <p><i class="glyphicon glyphicon-envelope"></i> {{ email }} </p>
+      <p><i class="glyphicon glyphicon-usd"></i>Reward Score: {{ score }}</p>
 
-  <div class="display">
-    <ul class="nav nav-stacked" id="accordion2">
-      <a data-toggle="modal" data-target="#followingModal" data-parent="#accordion2" href="#secondLink">{{+followingUsers.length}} Following</a>
-    </ul>
+      <div class="display">
+        <ul class="nav nav-stacked" id="accordion2">
+          <a data-toggle="modal" data-target="#followingModal" data-parent="#accordion2" href="#secondLink">{{+followingUsers.length}} Following</a>
+        </ul>
 
 
 
-    <ul class="nav nav-stacked" id="accordion1">
-      <a data-toggle="modal" data-target="#followerModal" data-parent="#accordion1" href="#firstLink">{{+followerUsers.length}} Followers</a>
-    </ul>
+        <ul class="nav nav-stacked" id="accordion1">
+          <a data-toggle="modal" data-target="#followerModal" data-parent="#accordion1" href="#firstLink">{{+followerUsers.length}} Followers</a>
+        </ul>
+      </div>
+
+      <div>
+        <ul class="list-group">
+          <a [routerLink]="['/edit-profile']">
+            <button type="button" name="button" class="btn btn-sm btn-info">Edit Profile</button>
+          </a>
+          <a [routerLink]="['/create-event']">
+            <button type="button" name="button" class="btn btn-sm btn-primary">Create Event</button>
+          </a>
+          <a [routerLink]="['/edit-avatar']">
+            <button type="button" name="button" class="btn btn-sm btn-success">Change Avatar</button>
+          </a>
+        </ul>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <ul class="list-group">
-      <a [routerLink]="['/edit-profile']">
-        <button type="button" name="button" class="btn btn-sm btn-info">Edit Profile</button>
-      </a>
-      <a [routerLink]="['/edit-profile']">
-        <button type="button" name="button" class="btn btn-sm btn-primary">Change Password</button>
-      </a>
-      <a [routerLink]="['/edit-avatar']">
-        <button type="button" name="button" class="btn btn-sm btn-success">Change Avatar</button>
-      </a>
-    </ul>
+  <div class="col-md-6">
+    <div class="jumbotron text-center" id="jtc" style="">
+      <div class="card-body">
+        <h3 class="card-title">About Me</h3>
+        <p class="card-text">{{ aboutme }}</p>
+        </div>
+    </div>
+    <div class="jumbotron text-center" id="jtc" style="">
+      <div class="card-body">
+        <h3 class="card-title">My Events</h3>
+        <div class="scrollx">
+          <div class="qrcodes" *ngFor="let event of events"><a [routerLink]="['/view-event/', event._id]">
+              <img src={{googleapi}}{{localip}}{{event._id}}/>
+              <div>{{event.eventName}}</div>
+          </a></div>
+        </div>
+        </div>
+    </div>
   </div>
 </div>
-<br>
-<br>
+<div class="row">
+    <div class="coloumn">
+      <div class="col-xs-6 col-sm-4">
+        <div class="thumbnail">
+          <div class="caption">
+            <!-- Panel Title -->
+            <div>
+              <div id="car-{{mostRecentBlog._id}}" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol>
+                  <li class="carousel-indicators" *ngFor="let imagePath of mostRecentBlog.imagePaths; let RowIndex = index" [attr.data-target]="'#car-'" [attr.data-target]="RowIndex" [ngClass]="{'active': RowIndex == 0}"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div *ngFor="let imagePath of mostRecentBlog.imagePaths; let RowIndex = index" class="item" [ngClass]="{'active': RowIndex == 0}">
+                    <img src={{imagePath}} alt="">
+                  </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="/dashboard#car-{{mostRecentBlog._id}}" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="/dashboard#car-{{mostRecentBlog._id}}" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+              <!-- Panel Footer Start -->
+              <div class="panel-footer">
+                <div class="panel-heading">
+                  <a [routerLink]="['/view-blog/', mostRecentBlog._id]">
+                    <h3 class="panel-title">{{ mostRecentBlog.title }}</h3>
+                  </a>
+                </div>
+
+
+                <strong>Posted by:</strong>
+                <a [routerLink]="['/user/',mostRecentBlog.createdBy]">
+                  {{ mostRecentBlog.createdBy }}
+                </a>
+                <br />
+                <strong>Date: </strong>{{ mostRecentBlog.createdAt | date:'MMM dd, yyyy' }}
+                <br />
+
+                <div *ngIf="mostRecentBlog.tags?.length > 0">
+                  <strong>Tags: </strong><a [routerLink]="['/search/tags/', tag]" *ngFor="let tag of mostRecentBlog.tags">#{{ tag }}</a>
+                </div>
+
+                <br />
+
+
+                <!-- Likes Dropdown  -->
+                <div class="dropdown">
+                  <!-- Like Button -->
+                  <button [disabled]="mostRecentBlog.likedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-success"  (click)="likeBlog(mostRecentBlog._id)"><span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{ mostRecentBlog.likes }}</button>
+                  <div class="dropdown-content">
+                    <a [routerLink]="['/user/', liker]" *ngFor="let liker of mostRecentBlog.likedBy">{{ liker }}</a>
+                  </div>
+                </div>
+
+                <!-- Dislikes Dropdown  -->
+                <div class="dropdown">
+                  <button [disabled]="mostRecentBlog.dislikedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-warning"  (click)="dislikeBlog(mostRecentBlog._id)"><span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes: {{ mostRecentBlog.dislikes }}</button>
+                  <div class="dropdown-content">
+                    <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of mostRecentBlog.dislikedBy">{{ disliker }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="coloumn">
+  <div class="col-xs-6 col-sm-4">
+    <div class="thumbnail">
+      <div class="caption">
+        <!-- Panel Title -->
+        <div>
+          <div id="car-{{mostLikeBlog._id}}" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol>
+              <li class="carousel-indicators" *ngFor="let imagePath of mostLikeBlog.imagePaths; let RowIndex = index" [attr.data-target]="'#car-'" [attr.data-target]="RowIndex" [ngClass]="{'active': RowIndex == 0}"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div *ngFor="let imagePath of mostLikeBlog.imagePaths; let RowIndex = index" class="item" [ngClass]="{'active': RowIndex == 0}">
+                <img src={{imagePath}} alt="">
+              </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="/dashboard#car-{{mostLikeBlog._id}}" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="/dashboard#car-{{mostLikeBlog._id}}" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <!-- Panel Footer Start -->
+          <div class="panel-footer">
+            <div class="panel-heading">
+              <a [routerLink]="['/view-blog/', mostLikeBlog._id]">
+                <h3 class="panel-title">{{ mostLikeBlog.title }}</h3>
+              </a>
+            </div>
+
+
+            <strong>Posted by:</strong>
+            <a [routerLink]="['/user/',mostLikeBlog.createdBy]">
+              {{ mostLikeBlog.createdBy }}
+            </a>
+            <br />
+            <strong>Date: </strong>{{ mostLikeBlog.createdAt | date:'MMM dd, yyyy' }}
+            <br />
+
+            <div *ngIf="mostLikeBlog.tags?.length > 0">
+              <strong>Tags: </strong><a [routerLink]="['/search/tags/', tag]" *ngFor="let tag of mostLikeBlog.tags">#{{ tag }}</a>
+            </div>
+
+            <br />
+
+
+            <!-- Likes Dropdown  -->
+            <div class="dropdown">
+              <!-- Like Button -->
+              <button [disabled]="mostLikeBlog.likedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-success"  (click)="likeBlog(mostLikeBlog._id)"><span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{ mostLikeBlog.likes }}</button>
+              <div class="dropdown-content">
+                <a [routerLink]="['/user/', liker]" *ngFor="let liker of mostLikeBlog.likedBy">{{ liker }}</a>
+              </div>
+            </div>
+
+            <!-- Dislikes Dropdown  -->
+            <div class="dropdown">
+              <button [disabled]="mostLikeBlog.dislikedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-warning"  (click)="dislikeBlog(mostLikeBlog._id)"><span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes: {{ mostLikeBlog.dislikes }}</button>
+              <div class="dropdown-content">
+                <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of mostLikeBlog.dislikedBy">{{ disliker }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+    <div class="coloumn">
+    <div class="col-xs-6 col-sm-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <!-- Panel Title -->
+          <div>
+            <div id="car-{{mostCommnetBlog._id}}" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol>
+                <li class="carousel-indicators" *ngFor="let imagePath of mostCommnetBlog.imagePaths; let RowIndex = index" [attr.data-target]="'#car-'" [attr.data-target]="RowIndex" [ngClass]="{'active': RowIndex == 0}"></li>
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div *ngFor="let imagePath of mostCommnetBlog.imagePaths; let RowIndex = index" class="item" [ngClass]="{'active': RowIndex == 0}">
+                  <img src={{imagePath}} alt="">
+                </div>
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="/dashboard#car-{{mostCommnetBlog._id}}" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="/dashboard#car-{{mostCommnetBlog._id}}" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <!-- Panel Footer Start -->
+            <div class="panel-footer">
+              <div class="panel-heading">
+                <a [routerLink]="['/view-blog/', mostCommnetBlog._id]">
+                  <h3 class="panel-title">{{ mostCommnetBlog.title }}</h3>
+                </a>
+              </div>
+
+
+              <strong>Posted by:</strong>
+              <a [routerLink]="['/user/',mostCommnetBlog.createdBy]">
+                {{ mostCommnetBlog.createdBy }}
+              </a>
+              <br />
+              <strong>Date: </strong>{{ mostCommnetBlog.createdAt | date:'MMM dd, yyyy' }}
+              <br />
+
+              <div *ngIf="mostCommnetBlog.tags?.length > 0">
+                <strong>Tags: </strong><a [routerLink]="['/search/tags/', tag]" *ngFor="let tag of mostCommnetBlog.tags">#{{ tag }}</a>
+              </div>
+
+              <br />
+
+
+              <!-- Likes Dropdown  -->
+              <div class="dropdown">
+                <!-- Like Button -->
+                <button [disabled]="mostCommnetBlog.likedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-success"  (click)="likeBlog(mostCommnetBlog._id)"><span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{ mostCommnetBlog.likes }}</button>
+                <div class="dropdown-content">
+                  <a [routerLink]="['/user/', liker]" *ngFor="let liker of mostCommnetBlog.likedBy">{{ liker }}</a>
+                </div>
+              </div>
+
+              <!-- Dislikes Dropdown  -->
+              <div class="dropdown">
+                <button [disabled]="mostCommnetBlog.dislikedBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-warning"  (click)="dislikeBlog(mostCommnetBlog._id)"><span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes: {{ mostCommnetBlog.dislikes }}</button>
+                <div class="dropdown-content">
+                  <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of mostCommnetBlog.dislikedBy">{{ disliker }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
   <!--<div>-->
     <!--<h3>About me</h3>-->
     <!--<p style="word-wrap: break-word;"> {{ aboutme }} </p>-->
   <!--</div>-->
 
-  <div class="jumbotron text-center" id="jtc" style="width: 40rem;">
-    <div class="card-body">
-      <h3 class="card-title">About Me</h3>
-      <p class="card-text">{{ aboutme }}</p>
-      <a routerLink="/blog" class="card-link">View Blog</a>
-    </div>
-  </div>
 
 
 

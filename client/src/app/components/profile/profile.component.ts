@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {UsersService} from "../../services/users.service";
+import { BlogService } from "../../services/blog.service";
+import {EventService} from "../../services/event.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,10 +22,18 @@ export class ProfileComponent implements OnInit {
   followingUsers;
   followerUsers;
   score;
+  mostLikeBlog;
+  mostCommnetBlog;
+  mostRecentBlog;
+  events;
+  googleapi = "https://chart.googleapis.com/chart?cht=qr&chs=250x250&choe=UTF-8&chl=";
+  localip;
 
   constructor(
     private authService: AuthService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private blogService: BlogService,
+    private eventService: EventService
   ) { }
 
   loadFollowingsAndFollowers(){
@@ -49,7 +59,67 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  loadMyBlogs(username){
+    this.blogService.getAllBlogsForUser(username).subscribe(data=>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger'; // Return bootstrap error class
+        this.message = data.message; // Return error message
+      }else{
+        var myBlogs = data.blogs;
+        var likeCount = -1;
+        var resultMap = [];
+        var recentDate = null;
+        var commentCount = -1;
+        for(var i = 0; i < myBlogs.length; i++) {
+          var myBlog = myBlogs[i];
+          if(myBlog.likes > likeCount){
+            resultMap['mostLike'] = myBlog;
+            likeCount = myBlog.likes;
+          }
+
+          if(recentDate == null){
+            resultMap['mostRecent'] = myBlog;
+            recentDate = myBlog.createdAt;
+          }else{
+            if(myBlog.createdAt>recentDate){
+              resultMap['mostRecent'] = myBlog;
+              recentDate = myBlog.createdAt;
+            }
+          }
+
+          if(myBlog.comments.length > commentCount){
+            resultMap['mostComment'] = myBlog;
+            commentCount = myBlog.comments.length;
+          }
+
+        }
+        this.mostLikeBlog = resultMap['mostLike'];
+        this.mostRecentBlog = resultMap['mostRecent'];
+        this.mostCommnetBlog = resultMap['mostComment'];
+      }
+    });
+  }
+
+  loadMyEvent(username){
+    this.eventService.getAllEvent(username).subscribe(data=>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger'; // Return bootstrap error class
+        this.message = data.message; // Return error message
+      }else{
+        this.events = data.events;
+      }
+    });
+
+  }
+
+  getLocalip(){
+    this.eventService.getIp().subscribe(data=>{
+      this.localip = "http://"+ data.ip + ":4200/view-event/";
+    });
+  }
+
   ngOnInit() {
+    this.getLocalip();
     // Once component loads, get user's data to display on profile
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username; // Set username
@@ -57,6 +127,8 @@ export class ProfileComponent implements OnInit {
       this.aboutme = profile.user.aboutme;
       this.imagePath = profile.user.avatar;
       this.score = profile.user.score;
+      this.loadMyBlogs(this.username);
+      this.loadMyEvent(this.username);
       this.loadFollowingsAndFollowers();
     });
   }

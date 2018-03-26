@@ -19,6 +19,8 @@ import {EditProfileComponent} from "./components/profile/edit-profile/edit-profi
 import {EditAvatarComponent} from "./components/profile/edit-avatar/edit-avatar.component";
 import {EditPasswordComponent} from "./components/profile/edit-password/edit-password.component";
 import {RedirectComponent} from "./components/redirect/redirect.component";
+import {CreateEventComponent} from "./components/event/create-event/create-event.component";
+import {ViewEventComponent} from "./components/event/view-event/view-event.component";
 
 
 // Our Array of Angular 2 Routes
@@ -100,6 +102,15 @@ const appRoutes: Routes = [
     path: 'view-blog/:id',
     component: ViewBlogComponent, // Delete Blog Route
     canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'view-event/:id',
+    component: ViewEventComponent, // Edit Blog ROute
+  },
+  {
+    path: 'create-event',
+    component: CreateEventComponent, //Redirect Route
+    canActivate: [AuthGuard]  //User must be logged in to view this route
   },
   {
     path: 'redirect',

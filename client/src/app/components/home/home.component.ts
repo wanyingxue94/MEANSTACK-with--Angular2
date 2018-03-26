@@ -263,6 +263,8 @@ export class HomeComponent implements OnInit {
     // });
     //
     // this.getAllBlogs(); // Get all blogs on component load
+    var ip = window.location.hostname
+    console.log(ip);
   }
 
 }
