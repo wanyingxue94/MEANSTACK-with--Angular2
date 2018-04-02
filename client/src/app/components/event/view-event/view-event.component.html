@@ -1,0 +1,34 @@
+<div *ngIf="!going">
+  <h1 class="page-header">View Event</h1>
+  <div  *ngIf="event">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ event.eventName }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ event.detail }}
+      </div>
+      <div class="panel-footer">
+        <strong>Create by: </strong>{{ event.createdBy }}
+        <br>
+        <strong>Time: </strong>{{ event.eventTime|date:'mm:hh MMM dd, yyyy'  }}
+        <br>
+        <strong>Location: </strong>{{ event.location }}
+        <br>
+        <strong>Available Ticket: </strong>{{ event.ticketNumber }}
+      </div>
+
+    </div>
+    <div class="dropdown" *ngIf="event.ticketNumber>0">
+      <button type="button" name="button" class="btn btn-sm btn-success" (click)="getTicket()">I am Going</button>
+    </div>
+</div>
+</div>
+
+
+<div *ngIf="going" >
+  <p>
+      Thanks for coming!
+  </p>
+  <img src="http://localhost:8080/uploads/ticket.png" width="200px"/>
+</div>

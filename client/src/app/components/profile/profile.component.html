@@ -2,7 +2,7 @@
 <!--<div class="col-sm-3">-->
 <div class="row">
   <div class="col-md-6">
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" style="height: 10cm">
       <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
       <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
       <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
@@ -37,12 +37,14 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="jumbotron text-center" id="jtc" style="">
+    <div class="jumbotron text-center" style="height: 10cm">
       <div class="card-body">
         <h3 class="card-title">About Me</h3>
         <p class="card-text">{{ aboutme }}</p>
         </div>
     </div>
+  </div>
+  <div class="col-md-12">
     <div class="jumbotron text-center" id="jtc" style="">
       <div class="card-body">
         <h3 class="card-title">My Events</h3>
@@ -63,6 +65,7 @@
           <div class="caption">
             <!-- Panel Title -->
             <div>
+              <h3 class="card-title">Most Recent</h3>
               <div id="car-{{mostRecentBlog._id}}" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol>
@@ -139,6 +142,7 @@
     <div class="thumbnail">
       <div class="caption">
         <!-- Panel Title -->
+        <h3 class="card-title">Most Liked</h3>
         <div>
           <div id="car-{{mostLikeBlog._id}}" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -216,6 +220,7 @@
       <div class="thumbnail">
         <div class="caption">
           <!-- Panel Title -->
+          <h3 class="card-title">Most Popular</h3>
           <div>
             <div id="car-{{mostCommnetBlog._id}}" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
@@ -335,7 +340,7 @@
             <div class="list-container" *ngFor="let followerUser of followerUsers">
               <div *ngIf="followerUser.avatar" class="list-profile-image-container"><img class="img-circle list-profile-image" src={{followerUser.avatar}}></div>
               <div *ngIf="!followerUser.avatar" class="list-profile-image-container"><img class="img-circle list-profile-image" src="http://localhost:8080/uploads/download.jpeg"></div>
-              <div class="list-profile-name"><a [routerLink]="['/user/', followerUser.username]">{{followerUser.username}}</a></div>
+              <div class="list-profile-name"><a  href="/user/{{followerUser.username}}">{{followerUser.username}}</a></div>
             </div>
         </div>
         <div class="modal-footer">

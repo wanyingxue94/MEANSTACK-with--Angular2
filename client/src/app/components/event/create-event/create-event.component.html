@@ -1,0 +1,48 @@
+<h1 class="page-header">New Event</h1>
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message" *ngIf="message && newEvent">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+</div>
+
+<form [formGroup]="form" name="eventForm" (submit)="onCreateEventSubmit()">
+    <div class="form-group">
+      <label for="eventName">Event Name</label>
+      <div>
+        <input type="text" name="eventName" class="form-control" placeholder="*Event Name" autocomplete="off" formControlName="eventName" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="detail">Event Detail</label>
+      <div>
+        <textarea name="detail" rows="8" cols="80" placeholder="*Body" class="form-control" formControlName="detail"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="eventTime">Event Time</label>
+      <div>
+        <input type="datetime-local" name="eventTime" class="form-control" placeholder="*Event Detail" autocomplete="off" formControlName="eventTime" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Event Location</label>
+      <div>
+        <input type="text" name="location" class="form-control" placeholder="*Event Location" autocomplete="off" formControlName="location" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ticketNumber">Available Tickets</label>
+      <div>
+        <input type="number" name="ticketNumber" class="form-control" placeholder="*Event Detail" autocomplete="off" formControlName="ticketNumber" />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+
+</form>
