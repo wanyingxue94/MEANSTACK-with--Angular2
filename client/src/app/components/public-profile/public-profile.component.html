@@ -2,24 +2,29 @@
 <div class="row show-hide-message" *ngIf="message">
   <div [ngClass]="messageClass"> {{ message }}</div>
 </div>
-<div class="jumbotron text-center">
-  <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
-  <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
-  <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
-  <p><i class="glyphicon glyphicon-envelope"></i> {{ email }} </p>
-  <p><i class="glyphicon glyphicon-usd"></i>Reward Score: {{ score }}</p>
 
-  <div class="display">
-    <ul class="nav nav-stacked" id="accordion2">
-      <a data-toggle="modal" data-target="#followingModal" data-parent="#accordion2" href="#secondLink">{{+followingUsers.length}} Following</a>
-    </ul>
+<div class="row">
+  <div class="col-md-6">
+    <div class="jumbotron text-center" style="height: 10cm">
+      <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
+        <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
+          <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
+          <p><i class="glyphicon glyphicon-envelope"></i> {{ email }} </p>
+          <p><i class="glyphicon glyphicon-usd"></i>Reward Score: {{ score }}</p>
+
+      <div class="display">
+        <ul class="nav nav-stacked" id="accordion2">
+          <a data-toggle="modal" data-target="#followingModal" data-parent="#accordion2" href="#secondLink">{{+followingUsers.length}} Following</a>
+        </ul>
 
 
 
-    <ul class="nav nav-stacked" id="accordion1">
-      <a data-toggle="modal" data-target="#followerModal" data-parent="#accordion1" href="#firstLink">{{+followerUsers.length}} Followers</a>
-    </ul>
-  </div>
+        <ul class="nav nav-stacked" id="accordion1">
+          <a data-toggle="modal" data-target="#followerModal" data-parent="#accordion1" href="#firstLink">{{+followerUsers.length}} Followers</a>
+        </ul>
+      </div>
+
+
 
   <div *ngIf="currentUser&&username">
     <div *ngIf="followers.indexOf(this.currentUser)>=0">
@@ -29,10 +34,28 @@
       <button type="submit" name="button" (click)="follow()" class="btn btn-success">Follow</button>
     </div>
   </div>
+    </div>
+  </div>
+
+
+    <div class="col-md-6">
+      <div class="jumbotron text-center" id="jtc" style="height: 10cm">
+        <div class="card-body">
+          <h3 class="card-title">My Events</h3>
+          <div class="scrollx">
+            <div class="qrcodes" *ngFor="let event of events"><a [routerLink]="['/view-event/', event._id]">
+                <img src={{googleapi}}{{localip}}{{event._id}}/>
+                <div>{{event.eventName}}</div>
+            </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
-</div>
+
 <br>
 <br>
 <!--<div class="col-sm-9">-->
@@ -53,7 +76,7 @@
 
   <div *ngFor="let blog of blogPosts">
     <div class="coloumn">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <div class="thumbnail">
           <div class="caption">
             <!--<div id="grid">-->
@@ -138,3 +161,54 @@
       </div>
     </div>
   </div>
+
+<div class="modal fade" id="followingModal" tabindex="-1" role="dialog" aria-labelledby="followingsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="followingsModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-container" *ngFor="let followingUser of followingUsers">
+          <div *ngIf="followingUser.avatar" class="list-profile-image-container"><img class="img-circle list-profile-image" src={{followingUser.avatar}}></div>
+          <div *ngIf="!followingUser.avatar" class="list-profile-image-container"><img class="img-circle list-profile-image" src="http://localhost:8080/uploads/download.jpeg"></div>
+          <div class="list-profile-name"><a href="/user/{{followingUser.username}}">{{followingUser.username}}</a></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-labelledby="followerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="followerModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="list-container" *ngFor="let followerUser of followerUsers">
+          <div *ngIf="followerUser.avatar" class="list-profile-image-container"><img class="img-circle list-profile-image" src={{followerUser.avatar}}></div>
+          <div *ngIf="!followerUser.avatar" class="list-profile-image-container"><img class="img-circle list-profile-image" src="http://localhost:8080/uploads/download.jpeg"></div>
+          <div class="list-profile-name"><a  href="/user/{{followerUser.username}}">{{followerUser.username}}</a></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+</script>

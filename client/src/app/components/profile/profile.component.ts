@@ -118,6 +118,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+
+
   ngOnInit() {
     this.getLocalip();
     // Once component loads, get user's data to display on profile

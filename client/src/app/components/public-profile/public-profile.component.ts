@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import {UsersService} from "../../services/users.service";
 import {Location} from "@angular/common";
+import {EventService} from "../../services/event.service";
 
 @Component({
   selector: 'app-public-profile',
@@ -27,6 +28,9 @@ export class PublicProfileComponent implements OnInit {
   aboutme = '';
   imagePath='';
   score;
+  events;
+  googleapi = "https://chart.googleapis.com/chart?cht=qr&chs=250x250&choe=UTF-8&chl=";
+  localip;
 
   constructor(
     private authService: AuthService,
@@ -34,6 +38,7 @@ export class PublicProfileComponent implements OnInit {
     private blogService: BlogService,
     private usersService: UsersService,
     private router: Router,
+    private eventService: EventService
   ) { }
 
   // Function to get all blogs from the database
@@ -114,6 +119,24 @@ export class PublicProfileComponent implements OnInit {
     });
   }
 
+  loadMyEvent(username){
+    this.eventService.getAllEvent(username).subscribe(data=>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger'; // Return bootstrap error class
+        this.message = data.message; // Return error message
+      }else{
+        this.events = data.events;
+      }
+    });
+
+  }
+
+  getLocalip(){
+    this.eventService.getIp().subscribe(data=>{
+      this.localip = "http://"+ data.ip + ":4200/view-event/";
+    });
+  }
+
 
 
   ngOnInit() {
@@ -137,6 +160,7 @@ export class PublicProfileComponent implements OnInit {
         this.imagePath = data.user.avatar;
         this.score = data.user.score;
         this.loadFollowingsAndFollowers();
+        this.loadMyEvent(this.username);
       }
     });
     this.getAllBlogs();

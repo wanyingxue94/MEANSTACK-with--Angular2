@@ -14,6 +14,10 @@ img {
 
 }
 
+#accordion1 li.panel{
+    margin-bottom: 0px;
+}
+
 .display{
   display: flex;
   margin:0 auto;
@@ -40,6 +44,33 @@ img {
 #accordion1 {
   display:block;
   margin:0px auto 10px 10px;
+}
+
+.list-container {
+  border-top: 1px solid #c1c1c1;
+  padding: 5px 0px;
+}
+.list-profile-image-container {
+  display:inline-block;
+}
+
+.list-profile-image-container img{
+  width:45px;
+}
+
+.list-profile-name {
+  display:inline-block;
+  width:80%;
+  padding-left:10px;
+}
+
+.scrollx {
+  overflow: auto;
+  white-space: nowrap;
+}
+.scrollx .qrcodes {
+  display:inline-block;
+  padding:0px 15px;
 }
 
 .thumbnail .caption {
