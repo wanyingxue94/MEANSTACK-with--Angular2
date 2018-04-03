@@ -46,23 +46,6 @@
 }
 
 
-/*.square {*/
-  /*position: relative;*/
-  /*flex-basis: calc(33.333% - 10px);*/
-  /*margin: 5px;*/
-  /*border: 1px solid;*/
-  /*box-sizing: border-box;*/
-
-/*}*/
-
-/*#grid {*/
-  /*display: grid;*/
-  /*height: 200px;*/
-  /*grid-template: repeat(3, 1fr) / repeat(3, 1fr);*/
-  /*grid-gap: 20px 5px;*/
-
-/*}*/
-
 .thumbnail .caption {
   height: 400px;
   padding:9px 0px;
