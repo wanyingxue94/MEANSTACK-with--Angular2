@@ -99,7 +99,7 @@
     </div>
     <div id="myblogs" class="tab-pane fade">
       <!-- Panel Start -->
-      <div *ngIf="!newPost">
+      <div *ngIf="!newPost&&username">
         <div *ngFor="let blog of followedBlogs">
           <div class="coloumn">
             <div class="col-xs-6 col-sm-4">

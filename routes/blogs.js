@@ -58,7 +58,7 @@ module.exports = (router) => {
                                 res.json({ success: false, message: err }); // Return general error message
                             }
                         } else {
-                            searchQuery = {'username': req.body.createdBy}, updateQuery = {$inc : {'score' : 1}}, options = {upsert: true};
+                            searchQuery = {'username': req.body.createdBy}, updateQuery = {$inc : {'score' : 1, 'blogScore' : 1}}, options = {upsert: true};
                             User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
                             });
                             res.json({ success: true, message: 'Blog saved!' }); // Return success message
@@ -332,7 +332,7 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
-                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : 4}}, options = {upsert: true};
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : 4, 'likeScore' : 4}}, options = {upsert: true};
                                                         User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
                                                         });
                                                         res.json({ success: true, message: 'Blog liked!' }); // Return success message
@@ -346,7 +346,7 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
-                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : 2}}, options = {upsert: true};
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : 2, 'likeScore' : 2}}, options = {upsert: true};
                                                         User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
                                                         });
                                                         res.json({ success: true, message: 'Blog liked!' }); // Return success message
@@ -414,7 +414,7 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
-                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : -4}}, options = {upsert: true};
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : -4,'likeScore' : -4}}, options = {upsert: true};
                                                         User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
                                                         });
                                                         res.json({ success: true, message: 'Blog disliked!' }); // Return success message
@@ -429,7 +429,7 @@ module.exports = (router) => {
                                                     if (err) {
                                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                                     } else {
-                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : -2}}, options = {upsert: true};
+                                                        searchQuery = {'username': blog.createdBy}, updateQuery = {$inc : {'score' : -2, 'likeScore' : -2}}, options = {upsert: true};
                                                         User.findOneAndUpdate(searchQuery, updateQuery, options,function (err,data) {
                                                         });
                                                         res.json({ success: true, message: 'Blog disliked!' }); // Return success message

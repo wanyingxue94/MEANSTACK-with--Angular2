@@ -1,34 +1,50 @@
 <div *ngIf="!going">
   <h1 class="page-header">View Event</h1>
-  <div  *ngIf="event">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{ event.eventName }}</h3>
-      </div>
-      <div class="panel-body">
-        {{ event.detail }}
-      </div>
-      <div class="panel-footer">
-        <strong>Create by: </strong>{{ event.createdBy }}
-        <br>
-        <strong>Time: </strong>{{ event.eventTime|date:'mm:hh MMM dd, yyyy'  }}
-        <br>
-        <strong>Location: </strong>{{ event.location }}
-        <br>
-        <strong>Available Ticket: </strong>{{ event.ticketNumber }}
-      </div>
-
-    </div>
-    <div class="dropdown" *ngIf="event.ticketNumber>0">
-      <button type="button" name="button" class="btn btn-sm btn-success" (click)="getTicket()">I am Going</button>
-    </div>
+  <div *ngIf="event">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ event.eventName }}</h3>
+      </div>
+      <div class="panel-body"> {{ event.detail }}</div>
+      <div class="panel-footer">
+        <strong>Create by: </strong>{{ event.createdBy }} <br>
+        <strong>Time: </strong>{{ event.eventTime|date:'mm:hh MMM dd, yyyy' }} <br>
+        <strong>Location: </strong>{{ event.location }} <br>
+        <strong>Available Ticket: </strong>{{ event.ticketNumber }}
+      </div>
+    </div>
+    <div *ngIf="event.ticketNumber>0 && event.createdBy!= username">
+      <h3 class="panel-title">Attend Details</h3>
+      <br>
+      <form [formGroup]="form" name="eventForm" (submit)="getTicket()">
+        <div class="form-group"><label for="fullname">Full Name</label>
+          <div><input type="text" name="fullname" class="form-control" placeholder="*Your Name" autocomplete="off"
+                      formControlName="fullname"/></div>
+        </div>
+        <div class="form-group"><label for="email">Email</label>
+          <div><input type="text" name="email" class="form-control" placeholder="*Your Email" autocomplete="off"
+                      formControlName="email"/></div>
+        </div>
+        <button type="submit" name="button" class="btn btn-success">I am going</button>
+      </form>
+      <!-- <button type="button" name="button" class="btn btn-sm btn-success" (click)="getTicket()">I am Going</button>-->
+    </div>
+  </div>
 </div>
-</div>
 
-
-<div *ngIf="going" >
-  <p>
-      Thanks for coming!
-  </p>
-  <img src="http://localhost:8080/uploads/ticket.png" width="200px"/>
+<div *ngIf="going">
+  <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+    <div class="card">
+      <img class="card-img-top" src="http://localhost:8080/uploads/ticket.png">
+      <div class="card-block">
+        <h4 class="card-title">Hi {{fullname}} !</h4>
+        <div class="card-text">
+          Thanks for coming to my event. The more detail and update will send to your email address: {{email}}
+        </div>
+      </div>
+      <div class="card-footer">
+        <span><i class=""></i>{{ event.createdBy }} </span>
+      </div>
+    </div>
+  </div>
 </div>

@@ -133,3 +133,7 @@ ul, ol {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+#piechart{
+  text-align: center;
+}

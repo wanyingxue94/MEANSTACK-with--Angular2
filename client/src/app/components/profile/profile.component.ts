@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import {UsersService} from "../../services/users.service";
 import { BlogService } from "../../services/blog.service";
 import {EventService} from "../../services/event.service";
+declare var google:any;
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +29,9 @@ export class ProfileComponent implements OnInit {
   events;
   googleapi = "https://chart.googleapis.com/chart?cht=qr&chs=250x250&choe=UTF-8&chl=";
   localip;
+  linkScore;
+  blogScore;
+  likeScore;
 
   constructor(
     private authService: AuthService,
@@ -121,7 +125,7 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getLocalip();
+
     // Once component loads, get user's data to display on profile
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username; // Set username
@@ -129,9 +133,39 @@ export class ProfileComponent implements OnInit {
       this.aboutme = profile.user.aboutme;
       this.imagePath = profile.user.avatar;
       this.score = profile.user.score;
+      this.blogScore = profile.user.blogScore;
+      this.likeScore = profile.user.likeScore;
+      this.linkScore = profile.user.linkScore;
       this.loadMyBlogs(this.username);
       this.loadMyEvent(this.username);
       this.loadFollowingsAndFollowers();
+
+      this.getLocalip();
+
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(function() { drawChart(profile.user.likeScore, profile.user.blogScore,profile.user.linkScore); });
+      //google.charts.setOnLoadCallback(drawChart,);
+
+      function drawChart(likeScore,blogScore,linkScore) {
+        console.log("score"+likeScore);
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Score from like received',     likeScore],
+          ['Score from blog post',      blogScore],
+          ['Score from link click',  linkScore]
+
+        ]);
+
+        var options = {
+          title: '',
+          is3D: true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
     });
   }
 

@@ -31,6 +31,10 @@ export class PublicProfileComponent implements OnInit {
   events;
   googleapi = "https://chart.googleapis.com/chart?cht=qr&chs=250x250&choe=UTF-8&chl=";
   localip;
+  linkScore;
+  blogScore;
+  likeScore;
+
 
   constructor(
     private authService: AuthService,
@@ -159,6 +163,9 @@ export class PublicProfileComponent implements OnInit {
         this.aboutme = data.user.aboutme;
         this.imagePath = data.user.avatar;
         this.score = data.user.score;
+        this.blogScore = data.user.blogScore;
+        this.likeScore = data.user.likeScore;
+        this.linkScore = data.user.linkScore;
         this.loadFollowingsAndFollowers();
         this.loadMyEvent(this.username);
       }

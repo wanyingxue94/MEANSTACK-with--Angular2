@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder,Validators} from "@angular/forms";
 import {EventService} from "../../../services/event.service";
 
 @Component({
@@ -18,6 +18,9 @@ export class ViewEventComponent implements OnInit {
   messageClass;
   message;
   going = false;
+  form;
+  fullname;
+  email;
 
   constructor(
     private location: Location,
@@ -26,7 +29,23 @@ export class ViewEventComponent implements OnInit {
     private formBuilder: FormBuilder,
     private eventService: EventService,
     private router: Router,
-  ) { }
+  ) {
+    this.createNewEventForm();
+  }
+
+  // Function to create new blog form
+  createNewEventForm() {
+    this.form = this.formBuilder.group({
+      // Title field
+      fullname: ['', Validators.compose([
+        Validators.required
+      ])],
+      // Body field
+      email: ['', Validators.compose([
+        Validators.required
+      ])]
+    })
+  }
 
   getTicket(){
     const goToEventRequest = {
@@ -39,12 +58,18 @@ export class ViewEventComponent implements OnInit {
       }else{
         this.message = data.message;
         this.going = true;
+        this.email = this.form.get('email').value;
+        this.fullname = this.form.get('fullname').value;
       }
     });
   }
 
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // When component loads, grab the id
+    // Get profile username on page load
+    this.authService.getProfile().subscribe(profile => {
+      this.username = profile.user.username; // Used when creating new blog posts and comments
+    });
     this.eventService.getEvent(this.currentUrl.id).subscribe(data=>{
       this.event = data.event;
     });

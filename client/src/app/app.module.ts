@@ -67,7 +67,7 @@ import { EventService } from './services/event.service';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    FlashMessagesModule
+    FlashMessagesModule,
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, BlogService,HomeService,SearchService,DashboardService,UsersService,EventService],
   bootstrap: [AppComponent]

@@ -6,20 +6,20 @@
 <div class="row">
   <div class="col-md-6">
     <div class="jumbotron text-center" style="height: 10cm">
-      <div [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
-        <div [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
+      <div *ngIf="imagePath" [hidden]="imagePath == null"><img class="img-circle" src={{+imagePath}}/></div>
+        <div *ngIf="imagePath" [hidden]="imagePath != null"><img class="img-circle" src="http://localhost:8080/uploads/download.jpeg"/></div>
           <p><i class="glyphicon glyphicon-user"></i> {{ username }} </p>
           <p><i class="glyphicon glyphicon-envelope"></i> {{ email }} </p>
           <p><i class="glyphicon glyphicon-usd"></i>Reward Score: {{ score }}</p>
 
-      <div class="display">
+      <div *ngIf="followingUsers" class="display">
         <ul class="nav nav-stacked" id="accordion2">
           <a data-toggle="modal" data-target="#followingModal" data-parent="#accordion2" href="#secondLink">{{+followingUsers.length}} Following</a>
         </ul>
 
 
 
-        <ul class="nav nav-stacked" id="accordion1">
+        <ul *ngIf="followerUsers" class="nav nav-stacked" id="accordion1">
           <a data-toggle="modal" data-target="#followerModal" data-parent="#accordion1" href="#firstLink">{{+followerUsers.length}} Followers</a>
         </ul>
       </div>

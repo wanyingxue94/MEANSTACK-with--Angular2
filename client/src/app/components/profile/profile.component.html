@@ -44,8 +44,10 @@
         </div>
     </div>
   </div>
-  <div class="col-md-12">
-    <div class="jumbotron text-center" id="jtc" style="">
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="jumbotron text-center" id="jtc" style="height:316px">
       <div class="card-body">
         <h3 class="card-title">My Events</h3>
         <div class="scrollx">
@@ -57,8 +59,18 @@
         </div>
     </div>
   </div>
+
+  <div class="col-md-6">
+    <div class="jumbotron text-center" style="height:316px">
+
+        <h3 class="card-title text-center">Blog Score Analysis</h3>
+
+        <div id="piechart"></div>
+
+    </div>
+  </div>
 </div>
-<div class="row">
+<div *ngIf="mostLikeBlog && mostLikeBlog && mostCommnetBlog"  class="row">
     <div class="coloumn">
       <div class="col-xs-6 col-sm-4">
         <div class="thumbnail">
@@ -351,6 +363,7 @@
     </div>
   </div>
   <script>
+    console.log(1);
   </script>
 
   <!--<div><h3>Followers</h3>-->

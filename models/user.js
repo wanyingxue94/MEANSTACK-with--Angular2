@@ -1,5 +1,7 @@
+
 const mongoose =  require('mongoose');
 mongoose.Promise = global.Promise;
+
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
@@ -142,7 +144,10 @@ const userSchema = new Schema({
     followers: [String],
     aboutme: { type: String },
     avatar: { type:String },
-    score: { type: Number, default: 0 }
+    score: { type: Number, default: 0 },
+    likeScore: { type: Number, default: 0 },
+    blogScore: { type: Number, default: 0 },
+    linkScore: { type: Number, default: 0 }
 
 });
 
