@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbe00a73-03b2-4cf7-97d8-9da365526f9f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/search/search.component.css" afterPath="$PROJECT_DIR$/client/src/app/components/search/search.component.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/search/search.component.html" afterPath="$PROJECT_DIR$/client/src/app/components/search/search.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css" afterPath="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html" afterPath="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,7 +24,7 @@
       <file leaf-file-name="profile.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/components/profile/profile.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
+            <state relative-caret-position="-83">
               <caret line="127" column="22" lean-forward="false" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -42,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/components/register/register.component.html">
+      <file leaf-file-name="profile.component.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/components/profile/profile.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1969">
+              <caret line="137" column="20" lean-forward="false" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -68,12 +68,35 @@
       <file leaf-file-name="tags.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/components/tags/tags.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="34" column="20" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="34" selection-end-column="20" />
+            <state relative-caret-position="165">
+              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="79" selection-end-column="18" />
               <folding>
                 <element signature="e#2978#2984#1" expanded="true" />
                 <element signature="e#3528#3534#1" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="public-profile.component.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1140">
+              <caret line="76" column="31" lean-forward="false" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+              <folding>
+                <element signature="e#5329#5335#1" expanded="true" />
+                <element signature="e#5879#5885#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="public-profile.component.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="607">
+              <caret line="159" column="0" lean-forward="true" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,50 +114,18 @@
       <file leaf-file-name="dashboard.component.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-218">
+            <state relative-caret-position="285">
               <caret line="19" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tags.component.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/components/tags/tags.component.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="70" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search.component.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search.component.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/components/search/search.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="607">
-              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="41" column="65" lean-forward="false" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="65" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register.component.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/components/register/register.component.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="1" lean-forward="false" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state relative-caret-position="716">
+              <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -206,7 +197,6 @@
         <option value="$PROJECT_DIR$/client/src/app/services/event.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/services/auth.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/login/login.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.css" />
         <option value="$PROJECT_DIR$/client/src/app/components/blog/blog.component.css" />
@@ -215,7 +205,6 @@
         <option value="$PROJECT_DIR$/client/src/app/components/event/create-event/create-event.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/event/create-event/create-event.component.css" />
-        <option value="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html" />
         <option value="$PROJECT_DIR$/routes/blogs.js" />
         <option value="$PROJECT_DIR$/routes/authentication.js" />
         <option value="$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.html" />
@@ -235,6 +224,8 @@
         <option value="$PROJECT_DIR$/client/src/app/components/tags/tags.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/components/search/search.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/components/search/search.component.css" />
+        <option value="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css" />
+        <option value="$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html" />
       </list>
     </option>
   </component>
@@ -498,6 +489,66 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="public-profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MEANSTACK-with--Angular2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MEANSTACK-with--Angular2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="profile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MEANSTACK-with--Angular2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MEANSTACK-with--Angular2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="dashboard" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -628,12 +679,12 @@
       <workItem from="1516650948416" duration="5049000" />
       <workItem from="1516972370430" duration="50244000" />
       <workItem from="1519650002138" duration="66580000" />
-      <workItem from="1521807875969" duration="35336000" />
+      <workItem from="1521807875969" duration="36302000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237098000" />
+    <option name="totallyTimeSpent" value="238064000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -716,14 +767,6 @@
           <folding>
             <element signature="e#0#50#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="73" column="1" lean-forward="false" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -838,14 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/components/home/home.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -884,14 +919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/profile/profile.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="137" column="20" lean-forward="false" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1034,25 +1061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/profile/profile.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="127" column="22" lean-forward="false" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#5520#5526#1" expanded="true" />
-            <element signature="e#6110#6116#1" expanded="true" />
-            <element signature="e#9080#9086#1" expanded="true" />
-            <element signature="e#9634#9640#1" expanded="true" />
-            <element signature="e#12702#12708#1" expanded="true" />
-            <element signature="e#13282#13288#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="469">
@@ -1079,14 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-218">
-          <caret line="19" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
@@ -1094,17 +1094,6 @@
           <folding>
             <element signature="e#3532#3538#1" expanded="true" />
             <element signature="e#4124#4130#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/tags/tags.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="34" column="20" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="34" selection-end-column="20" />
-          <folding>
-            <element signature="e#2978#2984#1" expanded="true" />
-            <element signature="e#3528#3534#1" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1117,19 +1106,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/tags/tags.component.css">
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/search/search.component.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="716">
+          <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/search/search.component.css">
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/profile/profile.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1969">
+          <caret line="137" column="20" lean-forward="false" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/profile/profile.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-83">
+          <caret line="127" column="22" lean-forward="false" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#5520#5526#1" expanded="true" />
+            <element signature="e#6110#6116#1" expanded="true" />
+            <element signature="e#9080#9086#1" expanded="true" />
+            <element signature="e#9634#9640#1" expanded="true" />
+            <element signature="e#12702#12708#1" expanded="true" />
+            <element signature="e#13282#13288#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="607">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <caret line="159" column="0" lean-forward="true" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tags/tags.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="42" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tags/tags.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="79" selection-end-column="18" />
+          <folding>
+            <element signature="e#2978#2984#1" expanded="true" />
+            <element signature="e#3528#3534#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/public-profile/public-profile.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="76" column="31" lean-forward="false" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+          <folding>
+            <element signature="e#5329#5335#1" expanded="true" />
+            <element signature="e#5879#5885#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -58,10 +58,6 @@
 
 <br>
 <br>
-<!--<div class="col-sm-9">-->
-  <!--<div class="panel-heading">-->
-    <!--<h3>About me</h3>-->
-    <!--<p style="word-wrap: break-word;"> {{ aboutme }} </p></div>-->
 
 <div id="j2" class="jumbotron text-center">
   <div class="card-body">
@@ -79,17 +75,6 @@
       <div class="col-sm-4">
         <div class="thumbnail">
           <div class="caption">
-            <!--<div id="grid">-->
-
-            <!--<div class="square">-->
-            <!-- Panel Title -->
-            <div class="panel-heading">
-              <a [routerLink]="['/view-blog/', blog._id]">
-                <h3 class="panel-title">{{ blog.title }}</h3>
-              </a>
-            </div>
-
-
             <div>
               <div id="car-{{blog._id}}" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -114,11 +99,14 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-
-              <br />
-              <br />
               <!-- Panel Footer Start -->
               <div class="panel-footer">
+                <div class="panel-heading">
+                  <a [routerLink]="['/view-blog/', blog._id]">
+                    <h3 class="panel-title">{{ blog.title }}</h3>
+                  </a>
+                </div>
+
                 <strong>Posted by:</strong>
                 <a [routerLink]="['/user/',blog.createdBy]">
                   {{ blog.createdBy }}

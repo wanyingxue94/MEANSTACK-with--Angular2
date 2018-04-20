@@ -128,3 +128,32 @@ img {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+
+.thumbnail .caption {
+  height: 400px;
+  padding:9px 0px;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+  height: 180px;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+  width: auto;
+  height:220px;
+  display:block;
+  margin:0px auto;
+}
+
+.panel-heading {
+  padding: 10px 0px;
+}
+
+.thumbnail {
+  border:0px
+}
