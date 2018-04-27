@@ -51,7 +51,6 @@ export class BlogComponent implements OnInit {
       // Body field
       body: ['', Validators.compose([
         Validators.required,
-        Validators.maxLength(500),
         Validators.minLength(5)
       ])],
       imagePath: ['', Validators.compose([

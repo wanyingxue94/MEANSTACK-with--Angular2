@@ -63,7 +63,9 @@ ul, ol {
 .scrollx {
   overflow: auto;
   white-space: nowrap;
+  overflow-x: scroll;
 }
+
 .scrollx .qrcodes {
   display:inline-block;
   padding:0px 15px;

@@ -44,6 +44,8 @@ export class CreateEventComponent implements OnInit {
       ])],
       location: ['', Validators.compose([
       ])],
+      price: ['', Validators.compose([
+      ])],
       ticketNumber: ['', Validators.compose([
         Validators.required
       ])],
@@ -57,6 +59,7 @@ export class CreateEventComponent implements OnInit {
     this.form.get('eventTime').enable();
     this.form.get('location').enable();
     this.form.get('ticketNumber').enable();
+    this.form.get('price').enable();
   }
 
   // Disable new Event form
@@ -66,6 +69,7 @@ export class CreateEventComponent implements OnInit {
     this.form.get('eventTime').disable();
     this.form.get('location').disable();
     this.form.get('ticketNumber').disable();
+    this.form.get('price').disable();
   }
 
   // Function to submit a new blog post
@@ -79,6 +83,7 @@ export class CreateEventComponent implements OnInit {
       eventTime: this.form.get('eventTime').value, // CreatedBy field
       location: this.form.get('location').value,
       ticketNumber: this.form.get('ticketNumber').value,
+      price: this.form.get('price').value,
       createdBy: this.username,
     }
 

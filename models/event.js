@@ -18,6 +18,8 @@ const eventSchema = new Schema({
     eventTime: { type: Date, default: Date.now() },
     ticketNumber: { type: Number, default: 0 },
     location: { type: String },
+    price:{type: Number},
+    paymentTokens: [String],
 });
 
 // Export Module/Schema

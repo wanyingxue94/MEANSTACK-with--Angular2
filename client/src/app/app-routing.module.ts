@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent, // Dashboard Route
-    canActivate: [AuthGuard] //if the user is logged in this auth service can be activated
+    // canActivate: [AuthGuard] //if the user is logged in this auth service can be activated
   },
   {
     path: 'register',

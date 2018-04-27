@@ -57,7 +57,7 @@ let bodyLengthChecker = (body) => {
         return false; // Return error
     } else {
         // Check length of body
-        if (body.length < 5 || body.length > 500) {
+        if (body.length < 5) {
             return false; // Return error if does not meet length requirement
         } else {
             return true; // Return as valid body

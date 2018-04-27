@@ -148,7 +148,6 @@ export class ProfileComponent implements OnInit {
       //google.charts.setOnLoadCallback(drawChart,);
 
       function drawChart(likeScore,blogScore,linkScore) {
-        console.log("score"+likeScore);
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
           ['Score from like received',     likeScore],

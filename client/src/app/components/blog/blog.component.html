@@ -55,7 +55,7 @@
       <ul class="help-block">
         <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
         <li
-          *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">
+          *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength)">
           Max length: 500, Min length: 5
         </li>
       </ul>

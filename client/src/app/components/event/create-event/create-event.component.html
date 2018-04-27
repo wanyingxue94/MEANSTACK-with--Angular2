@@ -42,6 +42,13 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label for="price">Price</label>
+      <div>
+        <input type="number" name="price" class="form-control" placeholder="*Event Price" autocomplete="off" formControlName="price" />
+      </div>
+    </div>
+
     <!-- Submit Button -->
     <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
 

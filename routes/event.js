@@ -24,7 +24,8 @@ module.exports = (router) => {
                     createdBy: req.body.createdBy, // CreatedBy field
                     eventTime: req.body.eventTime,
                     ticketNumber : req.body.ticketNumber,
-                    location: req.body.location
+                    location: req.body.location,
+                    price:req.body.price
                 });
 
                 event.save((err) => {
@@ -83,12 +84,13 @@ module.exports = (router) => {
          GET All EVENT
          =============================================================== */
     router.get('/allEvent/:username', (req, res) => {
+        var now = new Date();
         // Check if id is present in parameters
         if (!req.params.username) {
             res.json({ success: false, message: 'No Event username was provided.' }); // Return error message
         } else {
             // Check if the blog id is found in database
-            Event.find({ createdBy: req.params.username }, (err, events) => {
+            Event.find({$and:[{ createdBy: req.params.username }, {eventTime:{$gt:now}}]}, (err, events) => {
                 // Check if the id is a valid ID
                 if (err) {
                     res.json({ success: false, message: 'Not a valid event id' }); // Return error message
@@ -130,7 +132,22 @@ module.exports = (router) => {
                     if (!events) {
                         res.json({ success: false, message: 'event not found.' }); // Return error message
                     } else {
-                        res.json({ success: true, message: 'Evevt Updated!' });
+                        if(req.body.token!= null){
+                            searchQuery = {'_id': req.body.id}, updateQuery = {$push : {'paymentTokens' : req.body.token}}, options = {upsert: true};
+                            Event.findOneAndUpdate(searchQuery, updateQuery, options, function(err, events){
+                                if (err) {
+                                    res.json({ success: false, message: 'Not a valid event id' }); // Return error message
+                                } else {
+                                    if (!events) {
+                                        res.json({ success: false, message: 'event not found.' }); // Return error message
+                                    }else{
+                                        res.json({ success: true, message: 'Evevt Updated!' });
+                                    }
+                                }
+                            });
+                        }else {
+                            res.json({success: true, message: 'Evevt Updated!'});
+                        }
                     }
                 }
             });

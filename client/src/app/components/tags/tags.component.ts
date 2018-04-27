@@ -17,6 +17,7 @@ export class TagsComponent implements OnInit {
   currentUrl;
   message;
   messageClass;
+  tagName;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,6 +32,7 @@ export class TagsComponent implements OnInit {
   searchBlogsByTag(){
     this.currentUrl = this.activatedRoute.snapshot.params;
     var tag = this.currentUrl.tag;
+    this.tagName = this.currentUrl.tag;
     this.searchService.searchBlogsByTag(tag).subscribe(data => {
       this.blogPosts = data.blogs; // Assign array to use in HTML
     });
