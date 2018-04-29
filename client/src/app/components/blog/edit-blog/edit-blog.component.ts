@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../../services/blog.service';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-edit-blog',
@@ -16,6 +17,8 @@ export class EditBlogComponent implements OnInit {
   processing = false;
   currentUrl;
   loading = true;
+  updatedBlog;
+  allImages = [];
 
   constructor(
     private location: Location,
@@ -28,6 +31,9 @@ export class EditBlogComponent implements OnInit {
   updateBlogSubmit() {
     this.processing = true; // Lock form fields
     // Function to send blog object to backend
+    this.updatedBlog = this.blog;
+    this.updatedBlog.imagePaths = this.allImages;
+    console.log(this.updatedBlog);
     this.blogService.editBlog(this.blog).subscribe(data => {
       // Check if PUT request was a success or not
       if (!data.success) {
@@ -50,6 +56,15 @@ export class EditBlogComponent implements OnInit {
     this.location.back();
   }
 
+  deleteImage(a){
+    console.log(this.allImages);
+    var index = this.allImages.indexOf(a);
+    if(index> -1){
+      this.allImages.splice(index,1);
+    }
+    console.log(this.allImages);
+  }
+
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // When component loads, grab the id
     // Function to GET current blog with id in params
@@ -61,6 +76,7 @@ export class EditBlogComponent implements OnInit {
       } else {
         this.blog = data.blog; // Save blog object for use in HTML
         this.loading = false; // Allow loading of blog form
+        this.allImages = data.blog.imagePaths;
       }
     });
 

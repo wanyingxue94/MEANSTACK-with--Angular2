@@ -23,6 +23,18 @@
     <textarea [disabled]="processing" name="body" rows="8" cols="80" [(ngModel)]="blog.body" class="form-control" placeholder="*Blog Body"></textarea>
   </div>
 
+
+  <table class="table table-striped">
+
+    <tbody>
+    <tr *ngFor="let singleImagePath of blog.imagePaths">
+      <td><img width="200" src="{{singleImagePath}}"/></td>
+      <td><a (click)="deleteImage(singleImagePath)" id="{{singleImagePath}}" class="btn btn-danger">Delete</a></td>
+    </tr>
+
+    </tbody>
+  </table>
+
   <!-- Delete Button -->
   <a [routerLink]="['/delete-blog/', blog._id]"><button  [disabled]="processing"  type="button" name="button" class="btn btn-danger">Delete</button></a>
   <!-- Go Back Button -->

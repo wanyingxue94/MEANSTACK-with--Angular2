@@ -5,6 +5,7 @@ import { BlogService } from '../../services/blog.service';
 import {UsersService} from "../../services/users.service";
 import {Location} from "@angular/common";
 import {EventService} from "../../services/event.service";
+import {DashboardService} from "../../services/dashboard.service";
 
 @Component({
   selector: 'app-public-profile',
@@ -41,6 +42,7 @@ export class PublicProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private blogService: BlogService,
     private usersService: UsersService,
+    private dashboardService: DashboardService,
     private router: Router,
     private eventService: EventService
   ) { }
@@ -58,6 +60,21 @@ export class PublicProfileComponent implements OnInit {
         }
       }
       this.blogPosts = results; // Assign array to use in HTML
+    });
+  }
+  // Function to like a blog post
+  likeBlog(id) {
+    // Service to like a blog post
+    this.dashboardService.likeBlog(id).subscribe(data => {
+      this.getAllBlogs(); // Refresh blogs after like
+    });
+  }
+
+  // Function to disliked a blog post
+  dislikeBlog(id) {
+    // Service to dislike a blog post
+    this.dashboardService.dislikeBlog(id).subscribe(data => {
+      this.getAllBlogs(); // Refresh blogs after dislike
     });
   }
 

@@ -210,7 +210,8 @@ module.exports = (router) => {
                                         res.json({ success: false, message: 'You are not authorized to edit this blog post.' }); // Return error message
                                     } else {
                                         blog.title = req.body.title; // Save latest blog title
-                                        blog.body = req.body.body; // Save latest body
+                                        blog.body = req.body.body;// Save latest body
+                                        blog.imagePaths = req.body.imagePaths;
                                         blog.save((err) => {
                                             if (err) {
                                                 if (err.errors) {

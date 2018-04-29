@@ -48,54 +48,6 @@ export class ViewEventComponent implements OnInit {
     })
   }
 
-  getTicket(){
-    const goToEventRequest = {
-      id:this.event._id
-    }
-    this.eventService.goToEvent(goToEventRequest).subscribe(data=>{
-      if (!data.success) {
-        this.messageClass = 'alert alert-danger'; // Return bootstrap error class
-        this.message = data.message; // Return error message
-      }else{
-        this.message = data.message;
-        this.going = true;
-        this.email = this.form.get('email').value;
-        this.fullname = this.form.get('fullname').value;
-      }
-    });
-  }
-
-  openCheckout() {
-    var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_jZXCMhhVOvEQjL2stizZ6ab5',
-      locale: 'auto',
-      token: function (token: any) {
-        console.log(token.id);
-        const goToEventRequest = {
-          id:this.event._id
-        }
-        this.eventService.goToEvent(goToEventRequest).subscribe(data=>{
-          if (!data.success) {
-            this.messageClass = 'alert alert-danger'; // Return bootstrap error class
-            this.message = data.message; // Return error message
-          }else{
-            this.message = data.message;
-            this.going = true;
-            this.email = this.form.get('email').value;
-            this.fullname = this.form.get('fullname').value;
-          }
-        });
-      }
-    });
-
-    handler.open({
-      name: this.event.eventName,
-      description: this.event.eventName,
-      amount: this.event.price*100
-    });
-
-  }
-
   buyTicket(){
     var eventId = this.event._id;
     const goToEventRequest = {
