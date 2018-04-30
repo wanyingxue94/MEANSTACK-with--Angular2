@@ -26,7 +26,7 @@
 
 
 
-  <div *ngIf="currentUser&&username">
+  <div *ngIf="currentUser&&username&&currentUser != username">
     <div *ngIf="followers.indexOf(this.currentUser)>=0">
       <button type="submit" name="button" (click)="unfollow()" class="btn btn-danger">Unfollow</button>
     </div>

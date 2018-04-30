@@ -12,7 +12,7 @@ module.exports = (router) => {
         if (!req.params.text) {
             res.json({ success: false, message: 'Nothing to search.' }); // Return error message
         } else {
-            var query = {$or:[{title:{$regex: req.params.text, $options: 'i'}},{body:{$regex: req.params.text, $options: 'i'}}]}
+            var query = {$or:[{title:{$regex: req.params.text, $options: 'i'}},{body:{$regex: req.params.text, $options: 'i'}},{tags : req.params.text}]}
             Blog.find(query , function (err,blogs) {
                 if(err){
                     res.json({ success: false, message: err });

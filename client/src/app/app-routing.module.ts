@@ -27,7 +27,7 @@ import {ViewEventComponent} from "./components/event/view-event/view-event.compo
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent // Default Route
+    component: DashboardComponent // Default Route
   },
   {
     path: 'dashboard',
